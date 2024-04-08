@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="40dp">
 
@@ -15,7 +16,7 @@
 
         <TextView
             android:id="@+id/textViewIngredientName"
-            android:layout_width="200dp"
+            android:layout_width="180dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="6dp"
             android:text="Ruoka-aine"
@@ -23,7 +24,7 @@
 
         <TextView
             android:id="@+id/textViewIngredientWeight"
-            android:layout_width="100dp"
+            android:layout_width="80dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="6dp"
             android:text="paino"
@@ -31,12 +32,22 @@
 
         <TextView
             android:id="@+id/textViewIngredientCarbs"
-            android:layout_width="100dp"
+            android:layout_width="80dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="6dp"
             android:layout_weight="1"
             android:text="Hiilarit"
             android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#FD0404"
+            android:clickable="true"
+            app:srcCompat="@android:drawable/ic_menu_delete" />
+
     </LinearLayout>
 
 </androidx.appcompat.widget.LinearLayoutCompat>
