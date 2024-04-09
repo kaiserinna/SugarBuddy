@@ -2,7 +2,8 @@
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="40dp">
+    android:layout_height="50dp"
+    android:background="#DFF2FB">
 
 
     <LinearLayout
@@ -15,36 +16,36 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/textViewIngredientName"
-            android:layout_width="180dp"
+            android:id="@+id/textViewIngredientNameInFoodItemView"
+            android:layout_width="161dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="6dp"
             android:text="Ruoka-aine"
-            android:textSize="16sp" />
+            android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/textViewIngredientWeight"
+            android:id="@+id/textViewIngredientWeightInFoodItemView"
             android:layout_width="80dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="6dp"
-            android:text="paino"
-            android:textSize="16sp" />
+            android:text="Paino"
+            android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/textViewIngredientCarbs"
-            android:layout_width="80dp"
+            android:id="@+id/textViewIngredientCarbsInFoodItemView"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginLeft="6dp"
             android:layout_weight="1"
             android:text="Hiilarit"
-            android:textSize="16sp" />
+            android:textSize="20sp" />
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/imageViewDeleteFoodInFoodItemView"
             android:layout_width="30dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="#FD0404"
+            android:background="#FF2222"
             android:clickable="true"
             app:srcCompat="@android:drawable/ic_menu_delete" />
 
