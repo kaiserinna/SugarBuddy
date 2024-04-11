@@ -15,14 +15,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/sugar" />
+
     <ImageView
         android:id="@+id/imageViewProfileButton"
         android:layout_width="59dp"
         android:layout_height="48dp"
+        android:layout_marginTop="16dp"
         android:clickable="false"
-        app:srcCompat="@drawable/profile"
-        tools:layout_editor_absoluteX="338dp"
-        tools:layout_editor_absoluteY="16dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.937"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/profile" />
 
     <TextView
         android:id="@+id/textViewNameInMain"
@@ -46,8 +50,10 @@
         android:layout_height="47dp"
         android:layout_marginTop="20dp"
         android:ems="10"
+        android:hint="Käyttäjän nimi"
         android:inputType="text"
         android:text="Nimi"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewNameInMain" />
@@ -56,7 +62,7 @@
         android:id="@+id/editTextNumberDecimalSugarSensitivityLevelInProfile"
         android:layout_width="117dp"
         android:layout_height="52dp"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="4dp"
         android:ems="10"
         android:hint="Syötä IHT"
         android:inputType="numberDecimal"
@@ -64,114 +70,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewIHTinProfile" />
 
-    <TextView
-        android:id="@+id/textViewIHTinProfile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="Insuliiniherkkyystaso (IHT) :"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNameInProfile" />
-
-    <TextView
-        android:id="@+id/textViewHHKinProfile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="34dp"
-        android:text="Hiilihydraattikertoimet :"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNumberDecimalSugarSensitivityLevelInProfile" />
-
-    <EditText
-        android:id="@+id/editTextNumberDecimalCarbFactorBreakfast"
-        android:layout_width="120dp"
-        android:layout_height="39dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="80dp"
-        android:ems="10"
-        android:hint="Syötä kerroin"
-        android:inputType="numberDecimal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewHHKinProfile" />
-
-    <EditText
-        android:id="@+id/editTextNumberDecimalCarbFactorLunch"
-        android:layout_width="120dp"
-        android:layout_height="39dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="80dp"
-        android:ems="10"
-        android:hint="Syötä kerroin"
-        android:inputType="numberDecimal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNumberDecimalCarbFactorBreakfast" />
-
     <EditText
         android:id="@+id/editTextNumberDecimalCarbFactorSnack"
         android:layout_width="120dp"
         android:layout_height="39dp"
         android:layout_marginTop="4dp"
-        android:layout_marginEnd="80dp"
+        android:layout_marginEnd="84dp"
         android:ems="10"
         android:hint="Syötä kerroin"
         android:inputType="numberDecimal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextNumberDecimalCarbFactorLunch" />
-
-    <EditText
-        android:id="@+id/editTextNumberDecimalCarbFactorDinner"
-        android:layout_width="120dp"
-        android:layout_height="39dp"
-        android:layout_marginTop="4dp"
-        android:ems="10"
-        android:hint="Syötä kerroin"
-        android:inputType="numberDecimal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.046"
-        app:layout_constraintStart_toEndOf="@+id/textViewHHKDinnerInProfile"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNumberDecimalCarbFactorSnack" />
-
-    <EditText
-        android:id="@+id/editTextNumberDecimalCarbFactorEveningSnack"
-        android:layout_width="120dp"
-        android:layout_height="39dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="80dp"
-        android:ems="10"
-        android:hint="Syötä kerroin"
-        android:inputType="numberDecimal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNumberDecimalCarbFactorDinner" />
-
-    <TextView
-        android:id="@+id/textViewHHKBreakfastInProfile"
-        android:layout_width="105dp"
-        android:layout_height="39dp"
-        android:layout_marginTop="16dp"
-        android:text="Aamupala"
-        android:textAlignment="gravity"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toStartOf="@+id/editTextNumberDecimalCarbFactorBreakfast"
-        app:layout_constraintHorizontal_bias="0.961"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewHHKinProfile" />
-
-    <TextView
-        android:id="@+id/textViewHHKLunchInProfile"
-        android:layout_width="105dp"
-        android:layout_height="39dp"
-        android:layout_marginTop="4dp"
-        android:text="Lounas"
-        android:textAlignment="gravity"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toStartOf="@+id/editTextNumberDecimalCarbFactorLunch"
-        app:layout_constraintHorizontal_bias="0.952"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewHHKBreakfastInProfile" />
 
     <TextView
         android:id="@+id/textViewHHKSnackInProfile"
@@ -183,21 +92,47 @@
         android:textAlignment="gravity"
         android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@+id/editTextNumberDecimalCarbFactorSnack"
-        app:layout_constraintHorizontal_bias="0.952"
+        app:layout_constraintHorizontal_bias="0.95"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewHHKLunchInProfile" />
+
+    <TextView
+        android:id="@+id/textViewHHKBreakfastInProfile"
+        android:layout_width="105dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="12dp"
+        android:text="Aamupala"
+        android:textAlignment="gravity"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/editTextNumberDecimalCarbFactorBreakfast"
+        app:layout_constraintHorizontal_bias="0.96"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewHHKinProfile" />
 
     <TextView
         android:id="@+id/textViewHHKDinnerInProfile"
         android:layout_width="105dp"
         android:layout_height="39dp"
-        android:layout_marginStart="100dp"
         android:layout_marginTop="4dp"
         android:text="Päivällinen"
         android:textAlignment="gravity"
         android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/editTextNumberDecimalCarbFactorDinner"
+        app:layout_constraintHorizontal_bias="0.95"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewHHKSnackInProfile" />
+
+    <EditText
+        android:id="@+id/editTextNumberDecimalCarbFactorEveningSnack"
+        android:layout_width="120dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="84dp"
+        android:ems="10"
+        android:hint="Syötä kerroin"
+        android:inputType="numberDecimal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNumberDecimalCarbFactorDinner" />
 
     <TextView
         android:id="@+id/textViewHHKEveningsnackInProfile"
@@ -208,8 +143,92 @@
         android:textAlignment="gravity"
         android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@+id/editTextNumberDecimalCarbFactorEveningSnack"
-        app:layout_constraintHorizontal_bias="0.98"
+        app:layout_constraintHorizontal_bias="0.95"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewHHKDinnerInProfile" />
+
+    <EditText
+        android:id="@+id/editTextNumberDecimalCarbFactorDinner"
+        android:layout_width="120dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="84dp"
+        android:ems="10"
+        android:hint="Syötä kerroin"
+        android:inputType="numberDecimal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNumberDecimalCarbFactorSnack" />
+
+    <TextView
+        android:id="@+id/textViewHHKinProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="Hiilihydraattikertoimet :"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.482"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNumberDecimalSugarSensitivityLevelInProfile" />
+
+    <TextView
+        android:id="@+id/textViewHHKLunchInProfile"
+        android:layout_width="105dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="4dp"
+        android:text="Lounas"
+        android:textAlignment="gravity"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/editTextNumberDecimalCarbFactorLunch"
+        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewHHKBreakfastInProfile" />
+
+    <EditText
+        android:id="@+id/editTextNumberDecimalCarbFactorBreakfast"
+        android:layout_width="120dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="84dp"
+        android:ems="10"
+        android:hint="Syötä kerroin"
+        android:inputType="numberDecimal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewHHKinProfile" />
+
+    <EditText
+        android:id="@+id/editTextNumberDecimalCarbFactorLunch"
+        android:layout_width="120dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="84dp"
+        android:ems="10"
+        android:hint="Syötä kerroin"
+        android:inputType="numberDecimal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNumberDecimalCarbFactorBreakfast" />
+
+    <TextView
+        android:id="@+id/textViewIHTinProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Insuliiniherkkyystaso (IHT) :"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNameInProfile" />
+
+    <Button
+        android:id="@+id/buttonSaveProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:onClick="saveProfile"
+        android:text="Tallenna"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewHHKEveningsnackInProfile" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

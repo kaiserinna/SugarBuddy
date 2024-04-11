@@ -12,7 +12,7 @@ public class MealListAdapter extends RecyclerView.Adapter<MealItemViewHolder> {
 
     public MealListAdapter(Context context) {
         this.context = context;
-        this.mealList = Meal.getInstance();
+    //    this.mealList = Meal.
     }
 
     @NonNull
@@ -31,6 +31,6 @@ public class MealListAdapter extends RecyclerView.Adapter<MealItemViewHolder> {
         return 0;
     }
 
-    private
+
 
 }

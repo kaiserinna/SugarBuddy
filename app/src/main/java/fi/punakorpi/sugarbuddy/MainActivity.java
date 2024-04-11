@@ -45,10 +45,10 @@ public class MainActivity extends AppCompatActivity {
             adapter.notifyDataSetChanged();
         }
     }
-    public void switchToMealActivity(View view, mealType) {
+    public void switchToMealActivity(View view) {
         Intent intent = new Intent(this, MealActivity.class);
         startActivity(intent);
-    } //TODO: mistä ihmeestä se saa mealTypen parametrikseen?
+    }
 
     public void switchToProfileActivity(View view) {
         Intent intent = new Intent(this, ProfileActivity.class);
