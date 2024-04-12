@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class MainActivity extends AppCompatActivity {
 
+    private Storage storage = Storage.getInstance();
     private ImageView sugarBuddyImage;
     private ImageView profileButton;
     private RecyclerView mealRecyclerView;
@@ -29,26 +30,22 @@ public class MainActivity extends AppCompatActivity {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
 
-            //TODO: instantioi ArrayList<Meal> meals = [Aamupala, Lounas, Välipala, Päivällinen, Iltapala] ?;
 
             mealRecyclerView = findViewById(R.id.rvMealListInMainActivity);
             mealRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-            adapter = new MealListAdapter(getApplicationContext());
+            adapter = new MealListAdapter(getApplicationContext(), storage.getMeals());
             mealRecyclerView.setAdapter(adapter);
             return insets;
 
         });
     }
     public void onResume() {
-        super.onResume();;
+        super.onResume();
         if (adapter != null) {
             adapter.notifyDataSetChanged();
         }
     }
-    public void switchToMealActivity(View view) {
-        Intent intent = new Intent(this, MealActivity.class);
-        startActivity(intent);
-    }
+
 
     public void switchToProfileActivity(View view) {
         Intent intent = new Intent(this, ProfileActivity.class);

@@ -86,7 +86,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvFoodListInMealActivity"
         android:layout_width="309dp"
-        android:layout_height="244dp"
+        android:layout_height="230dp"
         android:layout_marginTop="12dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
