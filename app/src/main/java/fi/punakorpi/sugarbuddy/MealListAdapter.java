@@ -15,13 +15,13 @@ public class MealListAdapter extends RecyclerView.Adapter<MealItemViewHolder> {
 
 
     private Context context;
-    private ArrayList<Meal> mealList;
+    private Meals meals;
 
 
 
-    public MealListAdapter(Context context, ArrayList<Meal> mealList) {
+    public MealListAdapter(Context context, Meals meals) {
         this.context = context;
-        this.mealList = mealList;
+        this.meals = meals;
     }
 
 
@@ -33,16 +33,15 @@ public class MealListAdapter extends RecyclerView.Adapter<MealItemViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MealItemViewHolder holder, int position) {
-        holder.mealTypeInMealItemViewHolder.setText(mealList.get(position).getMealType());
-        holder.bloodSugarInMealItemViewHolder.setText(String.valueOf(mealList.get(position).getBloodSugar()));
-        holder.carbsTotalInMealItemViewHolder.setText(String.valueOf(mealList.get(position).calculateCarbsTotal()));
-        holder.insuliiniannosTextInMealItemViewHolder.setText("Insuliiniannos:");
-        holder.insulinDoseInMealItemViewHolder.setText(String.valueOf(mealList.get(position).getBloodSugar()));
+        holder.mealTypeInMealItemViewHolder.setText(meals.getMealByIndex(position).getMealType());
+        holder.bloodSugarInMealItemViewHolder.setText(String.valueOf(meals.getMealByIndex(position).getBloodSugar()));
+        holder.carbsTotalInMealItemViewHolder.setText(String.valueOf(meals.getMealByIndex(position).calculateCarbsTotal()));
+        holder.insulinDoseInMealItemViewHolder.setText(String.valueOf(meals.getMealByIndex(position).getBloodSugar()));
     }
 
     @Override
     public int getItemCount() {
-        return mealList.size();
+        return meals.getSize();
     }
 
 

@@ -27,4 +27,8 @@ public class Food {
     public void setWeight(float weight) {
         this.weight = weight;
     }
+
+    public float calculateCarbsInGrams() {
+        return weight * ingredient.getCarbsPercentage() / 100;
+    }
 }

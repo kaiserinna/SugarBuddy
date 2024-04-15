@@ -32,7 +32,7 @@
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/textViewIngredientCarbsInFoodItemView"
+            android:id="@+id/textViewCarbsInGramsInFoodItemView"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginLeft="6dp"

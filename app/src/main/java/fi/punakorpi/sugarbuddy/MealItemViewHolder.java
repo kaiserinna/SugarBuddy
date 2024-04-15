@@ -15,7 +15,7 @@ public class MealItemViewHolder extends RecyclerView.ViewHolder {
         public void onClick(View view) {
             int position = getAdapterPosition();
             if (position != RecyclerView.NO_POSITION) {
-                switchToMealActivity(view);
+                switchToMealActivity(view, position);
             }
         }
     }
@@ -23,7 +23,6 @@ public class MealItemViewHolder extends RecyclerView.ViewHolder {
     public TextView mealTypeInMealItemViewHolder;
     public TextView bloodSugarInMealItemViewHolder;
     public TextView carbsTotalInMealItemViewHolder;
-    public TextView insuliiniannosTextInMealItemViewHolder;
     public TextView insulinDoseInMealItemViewHolder;
 
     public MealItemViewHolder(@NonNull View itemView) {
@@ -32,13 +31,12 @@ public class MealItemViewHolder extends RecyclerView.ViewHolder {
         mealTypeInMealItemViewHolder = itemView.findViewById(R.id.textViewMealTypeInMealItemView);
         bloodSugarInMealItemViewHolder = itemView.findViewById(R.id.textViewBloodSugarInMealItemView);
         carbsTotalInMealItemViewHolder = itemView.findViewById(R.id.textViewCarbsTotalInMealItemView);
-        // insuliiniannosTextInMealItemViewHolder = "Insuliiniannos :"; does not function when this returns String and not TextView.
         insulinDoseInMealItemViewHolder = itemView.findViewById(R.id.textViewInsulinDoseInMealItemView);
     }
-    public void switchToMealActivity(View view) {
+    public void switchToMealActivity(View view, int position) {
         Context context = view.getContext();
         Intent intent = new Intent(context, MealActivity.class);
+        intent.putExtra("mealTypeIndex", position);
         context.startActivity(intent);
     }
-
 }

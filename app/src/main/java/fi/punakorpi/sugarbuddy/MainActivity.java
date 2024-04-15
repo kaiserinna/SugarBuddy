@@ -29,23 +29,27 @@ public class MainActivity extends AppCompatActivity {
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-
-
-            mealRecyclerView = findViewById(R.id.rvMealListInMainActivity);
-            mealRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-            adapter = new MealListAdapter(getApplicationContext(), storage.getMeals());
-            mealRecyclerView.setAdapter(adapter);
             return insets;
-
         });
+        mealRecyclerView = findViewById(R.id.rvMealListInMainActivity);
+        mealRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new MealListAdapter(getApplicationContext(), storage.getMeals());
+        mealRecyclerView.setAdapter(adapter);
     }
-    public void onResume() {
-        super.onResume();
+    private void updateScreen() {
         if (adapter != null) {
             adapter.notifyDataSetChanged();
         }
     }
+    public void onResume() {
+        super.onResume();
+        updateScreen();
+    }
 
+    public void onStart() {
+        super.onStart();
+        updateScreen();
+    }
 
     public void switchToProfileActivity(View view) {
         Intent intent = new Intent(this, ProfileActivity.class);

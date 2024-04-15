@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 public class Meal {
 
-    private ArrayList<Food> foods;
+    private ArrayList<Food> foods = new ArrayList<>();
     private String mealType;
-    private float bloodSugar;
+    private float bloodSugar = 0;
     private Profile profile = Profile.getInstance();
 
     public Meal(String mealType) {
@@ -57,6 +57,10 @@ public class Meal {
 
     public float getBloodSugar() {
         return bloodSugar;
+    }
+
+    public int getFoodListSize() {
+        return foods.size();
     }
 }
 
