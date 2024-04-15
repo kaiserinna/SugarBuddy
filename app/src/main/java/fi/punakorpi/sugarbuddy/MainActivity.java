@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         mealRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new MealListAdapter(getApplicationContext(), storage.getMeals());
         mealRecyclerView.setAdapter(adapter);
+        updateScreen();
     }
     private void updateScreen() {
         if (adapter != null) {

@@ -37,6 +37,7 @@ public class MealItemViewHolder extends RecyclerView.ViewHolder {
         Context context = view.getContext();
         Intent intent = new Intent(context, MealActivity.class);
         intent.putExtra("mealTypeIndex", position);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
     }
 }

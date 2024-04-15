@@ -50,6 +50,7 @@ public class MealActivity extends AppCompatActivity {
         rvFoodList.setLayoutManager(new LinearLayoutManager(this));
         foodListAdapter = new FoodListAdapter(getApplicationContext());
         rvFoodList.setAdapter(foodListAdapter);
+        updateScreen();
     }
 
     private void updateScreen() {
