@@ -10,10 +10,13 @@ public class FoodItemViewHolder extends RecyclerView.ViewHolder {
     TextView ingredientWeightInFoodItemView;
     TextView totalCarbsInGramsInFoodItemView;
 
+
+
     public FoodItemViewHolder(View view) {
         super(view);
         ingredientNameInFoodItemView = view.findViewById(R.id.textViewIngredientNameInFoodItemView);
         ingredientWeightInFoodItemView = view.findViewById(R.id.textViewIngredientWeightInFoodItemView);
         totalCarbsInGramsInFoodItemView = view.findViewById(R.id.textViewCarbsInGramsInFoodItemView);
+
     }
 }

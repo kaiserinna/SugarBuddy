@@ -6,7 +6,7 @@ public class Meal {
 
     private ArrayList<Food> foods = new ArrayList<>();
     private String mealType;
-    private float bloodSugar = 0;
+    private float bloodSugar;
     private Profile profile = Profile.getInstance();
 
     public Meal(String mealType) {
@@ -25,6 +25,9 @@ public class Meal {
     // Se koostuu veresnokeria korjaavasta insuliinimäärästä ja hiilihydraatteja vastaavasta insuliinimäärästä
     // Nämä lasketaan insuliiniherkkyystason ja hiilihydraattikertoimien avulla.
     public float calculateInsulinDose() {
+        if (bloodSugar == 0) {
+            return 0;
+        }
         // first this method counts carbs corrective insulin:
         float correctCarbFactor = profile.getCarbFactorByMealName(mealType);
         float carbsInsulin = calculateCarbsTotal() / correctCarbFactor;
@@ -37,11 +40,14 @@ public class Meal {
     }
 
     public float calculateCarbsTotal() {
-        float totalWeight = 0;
+        float totalCarbs = 0;
         for (Food food: foods) {
-            totalWeight = totalWeight + food.getWeight();
+            float weight = food.getWeight();
+            float carbsPercentage = food.getIngredient().getCarbsPercentage();
+            float carbsInGrams = weight * (carbsPercentage / 100);
+            totalCarbs = totalCarbs + carbsInGrams;
         }
-        return totalWeight;
+        return totalCarbs;
     }
     public Food getFoodByIndex(int index) {
         return foods.get(index);

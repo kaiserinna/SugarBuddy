@@ -7,10 +7,13 @@ public class Storage {
     private Profile profile;
     private Meals meals;
 
+    private FineliData fineliData;
+
 
     public Storage() {
         profile = Profile.getInstance();
         meals = new Meals();
+        fineliData = new FineliData();
     }
     public static Storage getInstance() {
         if (instance == null) {
@@ -26,4 +29,7 @@ public class Storage {
         return meals;
     }
 
+    public FineliData getFineliData() {
+        return fineliData;
+    }
 }

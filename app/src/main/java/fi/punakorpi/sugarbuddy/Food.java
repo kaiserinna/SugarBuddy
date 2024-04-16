@@ -7,8 +7,8 @@ public class Food {
     private float weight;
 
 
-    public Food(String ingredientName, float weight) {
-        // this.ingredient; //json juttua;
+    public Food(Ingredient ingredient, float weight) {
+        this.ingredient = ingredient;
         this.weight = weight;
     }
 

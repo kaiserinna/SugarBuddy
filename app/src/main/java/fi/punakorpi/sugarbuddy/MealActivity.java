@@ -57,11 +57,16 @@ public class MealActivity extends AppCompatActivity {
         int index = getIntent().getIntExtra("mealTypeIndex", -1);
         meal = storage.getMeals().getMealByIndex(index);
         mealName.setText(meal.getMealType());
-        bloodSugar.setText(String.valueOf(meal.getBloodSugar()));
+        float bs = meal.getBloodSugar();
+        bloodSugar.setText(bs <= 0 ? "" : String.format("%.1f", bs));
         foodIngredient.setText("");
         foodWeight.setText("");
         foodListAdapter.setMeal(meal);
-        insulinTotal.setText(String.valueOf(meal.calculateInsulinDose()));
+        if (meal.calculateInsulinDose() == 0) {
+            insulinTotal.setText("-- U");
+            return;
+        }
+        insulinTotal.setText(String.format("%.1f U", meal.calculateInsulinDose()));
     }
     public void onResume() {
         super.onResume();
@@ -80,11 +85,32 @@ public class MealActivity extends AppCompatActivity {
     // - tyhjentää syötä ruoka-aine kentän ja syötä gramma kentän EditTextFoodName.setText("")
     // - päivittää EditText insulinDoseTotal kentän
     public void addFood(View view) {
-        meal.addFood(new Food((foodIngredient.getText().toString()), Float.parseFloat(foodWeight.getText().toString())));
+        Ingredient ingredient = storage.getFineliData().getIngredientsByName(foodIngredient.getText().toString());
+        if (ingredient == null) {
+           foodIngredient.setText("Ei löydy");
+           return;
+        }
+        //ensin etsitään FineliDatasta editTextin nimellä se getIngredientsByname
+        //siitä tulee ingredient
+        float weight;
+        try {
+            weight = Float.parseFloat(foodWeight.getText().toString());
+        } catch (NumberFormatException e) {
+            foodWeight.setText("Ei numero");
+            return;
+        }
+        if (weight <= 0) {
+            foodWeight.setText("Anna paino oikein");
+            return;
+        }
+        Food newFood = new Food(ingredient, weight);
+
+        meal.addFood(newFood);
+        meal.setBloodSugar(Float.parseFloat(bloodSugar.getText().toString()));
         foodListAdapter.notifyItemInserted(meal.getFoodListSize() - 1);
         foodIngredient.setText("");
         foodWeight.setText("");
-        insulinTotal.setText(String.valueOf(meal.calculateInsulinDose()));
+        insulinTotal.setText(String.valueOf(meal.calculateInsulinDose()) + " U");
     }
 }
 
