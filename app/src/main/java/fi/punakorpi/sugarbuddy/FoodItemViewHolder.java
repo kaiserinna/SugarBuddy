@@ -1,4 +1,4 @@
-package fi.punakorpi.sugarbuddy;
+                                                                                                                      package fi.punakorpi.sugarbuddy;
 
 import android.view.View;
 import android.widget.TextView;

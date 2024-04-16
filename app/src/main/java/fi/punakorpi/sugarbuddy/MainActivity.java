@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Storage storage = Storage.getInstance();
     private ImageView sugarBuddyImage;
+    private TextView userName;
     private ImageView profileButton;
     private RecyclerView mealRecyclerView;
     private MealListAdapter adapter;
@@ -31,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        userName = findViewById(R.id.textViewNameInMain);
         mealRecyclerView = findViewById(R.id.rvMealListInMainActivity);
         mealRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new MealListAdapter(getApplicationContext(), storage.getMeals());
@@ -38,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
         updateScreen();
     }
     private void updateScreen() {
+        String name = storage.getProfile().getUserName();
+        userName.setText(name);
         if (adapter != null) {
             adapter.notifyDataSetChanged();
         }
