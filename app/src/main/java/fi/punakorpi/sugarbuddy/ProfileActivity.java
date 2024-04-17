@@ -1,5 +1,6 @@
 package fi.punakorpi.sugarbuddy;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -9,6 +10,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import java.io.FileNotFoundException;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -96,5 +99,12 @@ public class ProfileActivity extends AppCompatActivity {
         if (carbFactorFloat >= 0) {
             component.setText(String.valueOf(carbFactorFloat));
         }
+    }
+    public void onPaused() {
+        try {
+            Profile.saveToStream(this.openFileOutput(Profile.profileFileName, Context.MODE_PRIVATE));
+        } catch (FileNotFoundException ignored) {
+        }
+        super.onPause();
     }
 }

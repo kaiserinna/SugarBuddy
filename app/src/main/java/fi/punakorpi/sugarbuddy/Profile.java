@@ -1,7 +1,10 @@
 package fi.punakorpi.sugarbuddy;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -10,6 +13,8 @@ public class Profile implements Serializable {
     private float insulinSensitivityLevel;
     private ArrayList<CarbFactor> carbFactors;
     private static Profile instance = null;
+    // private static final long serialVersionUID = 2498729462L;
+    public static String profileFileName = "profile.serialized";
 
 
     public static Profile getInstance() {
@@ -71,11 +76,21 @@ public class Profile implements Serializable {
         return carbFactors;
     }
 
-    public static void serialize() {
-
+    public static void saveToStream(OutputStream outputStream) {
+        try {
+            ObjectOutputStream out = new ObjectOutputStream(outputStream);
+            out.writeObject(instance);
+            out.close();
+        } catch (IOException ignored) {
+        }
     }
-    public static void deserialize(InputStream is) {
-        ObjectInputStream in = new ObjectInputStream(is);
-        instance =
+    public static void loadFromStream(InputStream inputStream) {
+        try {
+            ObjectInputStream in = new ObjectInputStream(inputStream);
+            instance = (Profile) in.readObject();
+            in.close();
+        } catch (IOException | ClassNotFoundException ignored) {
+        }
+
     }
 }

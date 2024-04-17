@@ -117,7 +117,7 @@ public class MealActivity extends AppCompatActivity {
         foodListAdapter.notifyItemInserted(meal.getFoodListSize() - 1);
         foodIngredient.setText("");
         foodWeight.setText("");
-        insulinTotal.setText(String.valueOf(meal.calculateInsulinDose()) + " U");
+        insulinTotal.setText(String.format("%.1f U", meal.calculateInsulinDose()));
     }
 }
 

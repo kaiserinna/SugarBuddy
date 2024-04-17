@@ -1,5 +1,6 @@
 package fi.punakorpi.sugarbuddy;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -14,6 +15,8 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.FileNotFoundException;
+
 public class MainActivity extends AppCompatActivity {
 
     private Storage storage = Storage.getInstance();
@@ -22,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
     private ImageView profileButton;
     private RecyclerView mealRecyclerView;
     private MealListAdapter adapter;
+    private Context context;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +38,11 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        context = this;
+        try {
+            Profile.loadFromStream(context.openFileInput(Profile.profileFileName));
+        } catch (FileNotFoundException ignored) {
+        }
         userName = findViewById(R.id.textViewNameInMain);
         mealRecyclerView = findViewById(R.id.rvMealListInMainActivity);
         mealRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -56,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
         updateScreen();
     }
+
+
 
     public void switchToProfileActivity(View view) {
         Intent intent = new Intent(this, ProfileActivity.class);

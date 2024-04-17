@@ -1,6 +1,8 @@
 package fi.punakorpi.sugarbuddy;
 
-public class CarbFactor {
+import java.io.Serializable;
+
+public class CarbFactor implements Serializable {
     private String mealName;
     private float carbFactor;
 
