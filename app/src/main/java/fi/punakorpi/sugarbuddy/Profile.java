@@ -1,8 +1,11 @@
 package fi.punakorpi.sugarbuddy;
 
+import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Profile {
+public class Profile implements Serializable {
     private String userName;
     private float insulinSensitivityLevel;
     private ArrayList<CarbFactor> carbFactors;
@@ -66,5 +69,13 @@ public class Profile {
 
     public ArrayList<CarbFactor> getCarbFactors() {
         return carbFactors;
+    }
+
+    public static void serialize() {
+
+    }
+    public static void deserialize(InputStream is) {
+        ObjectInputStream in = new ObjectInputStream(is);
+        instance =
     }
 }

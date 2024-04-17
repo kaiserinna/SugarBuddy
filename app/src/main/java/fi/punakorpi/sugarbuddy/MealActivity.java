@@ -14,6 +14,8 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+
 public class MealActivity extends AppCompatActivity {
 
     private TextView mealName;
@@ -85,10 +87,15 @@ public class MealActivity extends AppCompatActivity {
     // - tyhjentää syötä ruoka-aine kentän ja syötä gramma kentän EditTextFoodName.setText("")
     // - päivittää EditText insulinDoseTotal kentän
     public void addFood(View view) {
-        Ingredient ingredient = storage.getFineliData().getIngredientsByName(foodIngredient.getText().toString());
-        if (ingredient == null) {
+        ArrayList<Ingredient> foundIngredients = storage.getFineliData().getIngredientsByName(foodIngredient.getText().toString());
+        if (foundIngredients.size() == 0) {
            foodIngredient.setText("Ei löydy");
            return;
+        }
+        if (foundIngredients.size() > 1) {
+            foodIngredient.setText(("Löytyi monta"));
+            // TODO: jos haussa löytyy monia ruoka-aineita, käyttäjä voi valita haluamansa
+            return;
         }
         //ensin etsitään FineliDatasta editTextin nimellä se getIngredientsByname
         //siitä tulee ingredient
@@ -103,7 +110,7 @@ public class MealActivity extends AppCompatActivity {
             foodWeight.setText("Anna paino oikein");
             return;
         }
-        Food newFood = new Food(ingredient, weight);
+        Food newFood = new Food(foundIngredients.get(0), weight);
 
         meal.addFood(newFood);
         meal.setBloodSugar(Float.parseFloat(bloodSugar.getText().toString()));

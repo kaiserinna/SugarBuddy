@@ -1,5 +1,6 @@
 package fi.punakorpi.sugarbuddy;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Storage {
