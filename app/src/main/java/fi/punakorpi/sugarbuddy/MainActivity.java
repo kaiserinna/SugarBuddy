@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         mealRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new MealListAdapter(getApplicationContext(), storage.getMeals());
         mealRecyclerView.setAdapter(adapter);
-        updateScreen();
+
     }
     private void updateScreen() {
         String name = storage.getProfile().getUserName();
@@ -57,17 +57,11 @@ public class MainActivity extends AppCompatActivity {
             adapter.notifyDataSetChanged();
         }
     }
-    public void onResume() {
-        super.onResume();
-        updateScreen();
-    }
 
     public void onStart() {
         super.onStart();
         updateScreen();
     }
-
-
 
     public void switchToProfileActivity(View view) {
         Intent intent = new Intent(this, ProfileActivity.class);

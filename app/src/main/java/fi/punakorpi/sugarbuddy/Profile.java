@@ -12,12 +12,12 @@ public class Profile implements Serializable {
     private String userName;
     private float insulinSensitivityLevel;
     private ArrayList<CarbFactor> carbFactors;
-    private static Profile instance = null;
+    private static volatile Profile instance = null;
     // private static final long serialVersionUID = 2498729462L;
     public static String profileFileName = "profile.serialized";
 
 
-    public static Profile getInstance() {
+    public static synchronized Profile getInstance() {
         if (instance == null) {
             instance = new Profile();
         }
@@ -62,7 +62,7 @@ public class Profile implements Serializable {
         return -1;
     }
 
-    public Profile() {
+    private Profile() {
         carbFactors = new ArrayList<>();
         carbFactors.add(new CarbFactor("Aamupala"));
         carbFactors.add(new CarbFactor("Lounas"));
@@ -76,7 +76,7 @@ public class Profile implements Serializable {
         return carbFactors;
     }
 
-    public static void saveToStream(OutputStream outputStream) {
+    public static synchronized void saveToStream(OutputStream outputStream) {
         try {
             ObjectOutputStream out = new ObjectOutputStream(outputStream);
             out.writeObject(instance);
@@ -84,7 +84,7 @@ public class Profile implements Serializable {
         } catch (IOException ignored) {
         }
     }
-    public static void loadFromStream(InputStream inputStream) {
+    public static synchronized void loadFromStream(InputStream inputStream) {
         try {
             ObjectInputStream in = new ObjectInputStream(inputStream);
             instance = (Profile) in.readObject();

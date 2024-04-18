@@ -1,6 +1,7 @@
 package fi.punakorpi.sugarbuddy;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -22,7 +23,9 @@ public class ProfileActivity extends AppCompatActivity {
     private EditText carbFactorSnack;
     private EditText carbFactorDinner;
     private EditText carbFactorEveningSnack;
+    
     private Profile profile;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +37,7 @@ public class ProfileActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        profile = Profile.getInstance();
+        
         userName = findViewById(R.id.editTextNameInProfile);
         insulinSensitivityLevel = findViewById(R.id.editTextNumberDecimalSugarSensitivityLevelInProfile);
         carbFactorBreakfast = findViewById(R.id.editTextNumberDecimalCarbFactorBreakfast);
@@ -42,7 +45,7 @@ public class ProfileActivity extends AppCompatActivity {
         carbFactorSnack = findViewById(R.id.editTextNumberDecimalCarbFactorSnack);
         carbFactorDinner = findViewById(R.id.editTextNumberDecimalCarbFactorDinner);
         carbFactorEveningSnack = findViewById(R.id.editTextNumberDecimalCarbFactorEveningSnack);
-
+        profile = Storage.getInstance().getProfile();
         loadProfile();
 
     }
@@ -63,6 +66,7 @@ public class ProfileActivity extends AppCompatActivity {
         saveCarbFactorDataToMealType(carbFactorSnack, "Välipala");
         saveCarbFactorDataToMealType(carbFactorDinner, "Päivällinen");
         saveCarbFactorDataToMealType(carbFactorEveningSnack, "Iltapala");
+        finish();
     }
 
     // tämä on apufunktio saveProfilelle, joka tallettaa carbFactor -komponentin tiedot profiilidataan
@@ -100,7 +104,8 @@ public class ProfileActivity extends AppCompatActivity {
             component.setText(String.valueOf(carbFactorFloat));
         }
     }
-    public void onPaused() {
+    @Override
+    public void onPause() {
         try {
             Profile.saveToStream(this.openFileOutput(Profile.profileFileName, Context.MODE_PRIVATE));
         } catch (FileNotFoundException ignored) {

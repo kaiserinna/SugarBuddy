@@ -6,15 +6,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.Locale;
-import java.net.URI;
-import java.net.URISyntaxException;
 
-public class FineliData {
+public class FineliDataRetriever {
 
-    public ArrayList<Ingredient> getIngredientsByName(String name) {
+    public ArrayList<Ingredient> getData(String name) {
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode fineliData = null;
         try {
@@ -31,5 +27,6 @@ public class FineliData {
             ingredientsFromFineli.add(new Ingredient(foodName, carbsPercentage));
         }
         return ingredientsFromFineli;
+
     }
 }

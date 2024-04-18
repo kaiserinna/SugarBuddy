@@ -15,6 +15,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class MealActivity extends AppCompatActivity {
 
@@ -87,37 +89,38 @@ public class MealActivity extends AppCompatActivity {
     // - tyhjentää syötä ruoka-aine kentän ja syötä gramma kentän EditTextFoodName.setText("")
     // - päivittää EditText insulinDoseTotal kentän
     public void addFood(View view) {
-        ArrayList<Ingredient> foundIngredients = FineliData.getIngredientsByName(foodIngredient.getText().toString());
-        if (foundIngredients.isEmpty()) {
-           foodIngredient.setText("Ei löydy");
-           return;
-        }
-        if (foundIngredients.size() > 1) {
-            foodIngredient.setText(("Löytyi monta"));
-            // TODO: jos haussa löytyy monia ruoka-aineita, käyttäjä voi valita haluamansa
-            return;
-        }
-        //ensin etsitään FineliDatasta editTextin nimellä se getIngredientsByname
-        //siitä tulee ingredient
-        float weight;
-        try {
-            weight = Float.parseFloat(foodWeight.getText().toString());
-        } catch (NumberFormatException e) {
-            foodWeight.setText("Ei numero");
-            return;
-        }
-        if (weight <= 0) {
-            foodWeight.setText("Anna paino oikein");
-            return;
-        }
-        Food newFood = new Food(foundIngredients.get(0), weight);
+        FineliData fineliData = new FineliData();
+        ExecutorService service = Executors.newSingleThreadExecutor();
+        service.execute(new Runnable() {
+            @Override
+            public void run() {
+                ArrayList<Ingredient> foundIngredients = fineliData.getIngredientsByName(foodIngredient.getText().toString());
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        float weight;
+                        try {
+                            weight = Float.parseFloat(foodWeight.getText().toString());
+                        } catch (NumberFormatException e) {
+                            foodWeight.setText("Ei numero");
+                            return;
+                        }
+                        if (weight <= 0) {
+                            foodWeight.setText("Anna paino oikein");
+                            return;
+                        }
+                        Food newFood = new Food(foundIngredients.get(0), weight);
 
-        meal.addFood(newFood);
-        meal.setBloodSugar(Float.parseFloat(bloodSugar.getText().toString()));
-        foodListAdapter.notifyItemInserted(meal.getFoodListSize() - 1);
-        foodIngredient.setText("");
-        foodWeight.setText("");
-        insulinTotal.setText(String.format("%.1f U", meal.calculateInsulinDose()));
+                        meal.addFood(newFood);
+                        meal.setBloodSugar(Float.parseFloat(bloodSugar.getText().toString()));
+                        foodListAdapter.notifyItemInserted(meal.getFoodListSize() - 1);
+                        foodIngredient.setText("");
+                        foodWeight.setText("");
+                        insulinTotal.setText(String.format("%.1f U", meal.calculateInsulinDose()));
+                    }
+                });
+            }
+        });
     }
 }
 

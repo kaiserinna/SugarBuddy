@@ -5,14 +5,11 @@ import java.util.ArrayList;
 
 public class Storage {
     private static Storage instance = null;
-    private Profile profile;
     private Meals meals;
-
     private FineliData fineliData;
 
 
     public Storage() {
-        profile = Profile.getInstance();
         meals = new Meals();
         fineliData = new FineliData();
     }
@@ -23,7 +20,7 @@ public class Storage {
         return instance;
     }
     public Profile getProfile() {
-        return profile;
+        return Profile.getInstance();
     }
 
     public Meals getMeals() {

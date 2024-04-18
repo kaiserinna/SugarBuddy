@@ -7,8 +7,10 @@ public class Meal {
     private ArrayList<Food> foods = new ArrayList<>();
     private String mealType;
     private float bloodSugar;
-    private Profile profile = Profile.getInstance();
 
+    private static Profile profile() {
+        return Storage.getInstance().getProfile();
+    }
     public Meal(String mealType) {
         this.mealType = mealType;
     }
@@ -29,10 +31,10 @@ public class Meal {
             return 0;
         }
         // first this method counts carbs corrective insulin:
-        float correctCarbFactor = profile.getCarbFactorByMealName(mealType);
+        float correctCarbFactor = profile().getCarbFactorByMealName(mealType);
         float carbsInsulin = calculateCarbsTotal() / correctCarbFactor;
         // then the method counts bloodsugarlevel corrective insulin:
-        float insulinSensitivityLevel = profile.getInsulinSensitivityLevel();
+        float insulinSensitivityLevel = profile().getInsulinSensitivityLevel();
         int BloodSugarLevelTarget = 6;
         float bloodSugarToBeCorrected = bloodSugar - BloodSugarLevelTarget; //voi palauttaa - merkkisen arvon, silloin vs on pienempi kuin 6 ja insulinTotalista pitää vähentää oikea määrä insuliinia
         float bloodSugarInsulin = bloodSugarToBeCorrected / insulinSensitivityLevel;
