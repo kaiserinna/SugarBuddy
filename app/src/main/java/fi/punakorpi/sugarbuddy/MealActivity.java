@@ -87,8 +87,8 @@ public class MealActivity extends AppCompatActivity {
     // - tyhjentää syötä ruoka-aine kentän ja syötä gramma kentän EditTextFoodName.setText("")
     // - päivittää EditText insulinDoseTotal kentän
     public void addFood(View view) {
-        ArrayList<Ingredient> foundIngredients = storage.getFineliData().getIngredientsByName(foodIngredient.getText().toString());
-        if (foundIngredients.size() == 0) {
+        ArrayList<Ingredient> foundIngredients = FineliData.getIngredientsByName(foodIngredient.getText().toString());
+        if (foundIngredients.isEmpty()) {
            foodIngredient.setText("Ei löydy");
            return;
         }

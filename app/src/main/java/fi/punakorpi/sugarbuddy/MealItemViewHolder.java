@@ -9,17 +9,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class MealItemViewHolder extends RecyclerView.ViewHolder {
-
-    public class MealItemClickListener implements View.OnClickListener {
-        @Override
-        public void onClick(View view) {
-            int position = getAdapterPosition();
-            if (position != RecyclerView.NO_POSITION) {
-                switchToMealActivity(view, position);
-            }
-        }
-    }
-
     public TextView mealTypeInMealItemViewHolder;
     public TextView bloodSugarInMealItemViewHolder;
     public TextView carbsTotalInMealItemViewHolder;
@@ -27,7 +16,15 @@ public class MealItemViewHolder extends RecyclerView.ViewHolder {
 
     public MealItemViewHolder(@NonNull View itemView) {
         super(itemView);
-        itemView.setOnClickListener(new MealItemClickListener());
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int position = getAdapterPosition();
+                if (position != RecyclerView.NO_POSITION) {
+                    switchToMealActivity(view, position);
+                }
+            }
+        });
         mealTypeInMealItemViewHolder = itemView.findViewById(R.id.textViewMealTypeInMealItemView);
         bloodSugarInMealItemViewHolder = itemView.findViewById(R.id.textViewBloodSugarInMealItemView);
         carbsTotalInMealItemViewHolder = itemView.findViewById(R.id.textViewCarbsTotalInMealItemView);
