@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="100dp"
     android:layout_marginLeft="6dp"
     android:layout_marginTop="15dp"
     android:layout_marginRight="6dp"
-    android:background="#A1EDDD"
+    android:background="@drawable/pyoristetyt_reunat"
     android:clickable="true">
 
 
@@ -15,15 +16,16 @@
         android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="250dp"
+            android:layout_width="297dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/textViewMealTypeInMealItemView"
-                android:layout_width="match_parent"
+                android:layout_width="210dp"
                 android:layout_height="59dp"
+                android:layout_marginLeft="6dp"
                 android:text="MealType"
                 android:textSize="24sp" />
 
@@ -31,6 +33,7 @@
                 android:id="@+id/textViewBloodSugarInMealItemView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
                 android:layout_weight="1"
                 android:text="BloodSugar" />
 
@@ -38,6 +41,7 @@
                 android:id="@+id/textViewCarbsTotalInMealItemView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
                 android:layout_weight="1"
                 android:text="CarbsTotal" />
 
@@ -53,6 +57,7 @@
                 android:id="@+id/textInsuliiniannosConstantInMealItemView"
                 android:layout_width="match_parent"
                 android:layout_height="25dp"
+                android:layout_marginTop="6dp"
                 android:autoText="false"
                 android:text="INSULIINIMÄÄRÄ:"
                 android:textSize="10sp" />
@@ -66,6 +71,7 @@
                     android:id="@+id/textViewInsulinDoseInMealItemView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="16dp"
                     android:layout_weight="1"
                     android:text="InsulinDose"
                     android:textSize="34sp" />

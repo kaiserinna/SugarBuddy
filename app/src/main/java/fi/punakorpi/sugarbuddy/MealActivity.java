@@ -118,6 +118,12 @@ public class MealActivity extends AppCompatActivity {
         mainLayout.requestFocus();
         Boolean isFoodEmpty = foodIngredient.getText().toString().isEmpty();
         Boolean isWeightEmpty = foodWeight.getText().toString().isEmpty();
+        Boolean isBloodSugarEmpty = bloodSugar.getText().toString().isEmpty();
+        if (isBloodSugarEmpty) {
+            Toast.makeText(context, "Verensokeritaso puuttuu", Toast.LENGTH_LONG).show();
+            bloodSugar.requestFocus();
+            return;
+        }
         if (isFoodEmpty) {
             Toast.makeText(context, isWeightEmpty ? "Ruoka-aine ja painotieto puuttuvat" : "Ruoka-aine puuttuu", Toast.LENGTH_LONG).show();
             foodIngredient.requestFocus();
