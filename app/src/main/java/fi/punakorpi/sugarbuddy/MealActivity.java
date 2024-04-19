@@ -1,13 +1,18 @@
 package fi.punakorpi.sugarbuddy;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -29,9 +34,9 @@ public class MealActivity extends AppCompatActivity {
     private TextView insulinTotal;
     private Meal meal;
     private FoodListAdapter foodListAdapter;
-
     private Storage storage = Storage.getInstance();
-
+    private Context context = this;
+    private ConstraintLayout mainLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,14 +55,14 @@ public class MealActivity extends AppCompatActivity {
         rvFoodList = findViewById(R.id.rvFoodListInMealActivity);
         insulinTotal = findViewById(R.id.textViewTotalInsulinLevelStringInMealActivity);
         addButton = findViewById(R.id.buttonAddFoodItemToRecyclerViewInMealActivity);
-
+        mainLayout = findViewById(R.id.main);
         rvFoodList.setLayoutManager(new LinearLayoutManager(this));
-        foodListAdapter = new FoodListAdapter(getApplicationContext());
+        foodListAdapter = new FoodListAdapter(this);
         rvFoodList.setAdapter(foodListAdapter);
-        updateScreen();
+        updateMealActivityView();
     }
 
-    private void updateScreen() {
+    public void updateMealActivityView() {
         int index = getIntent().getIntExtra("mealTypeIndex", -1);
         meal = storage.getMeals().getMealByIndex(index);
         mealName.setText(meal.getMealType());
@@ -65,6 +70,7 @@ public class MealActivity extends AppCompatActivity {
         bloodSugar.setText(bs <= 0 ? "" : String.format("%.1f", bs));
         foodIngredient.setText("");
         foodWeight.setText("");
+
         foodListAdapter.setMeal(meal);
         if (meal.calculateInsulinDose() == 0) {
             insulinTotal.setText("-- U");
@@ -74,21 +80,54 @@ public class MealActivity extends AppCompatActivity {
     }
     public void onResume() {
         super.onResume();
-        updateScreen();
+        updateMealActivityView();
     }
 
     public void onStart() {
         super.onStart();
-        updateScreen();
+        updateMealActivityView();
     }
+    private void handleIngredient(Ingredient ingredient) {
+        float weight;
+        try {
+            weight = Float.parseFloat(foodWeight.getText().toString());
+        } catch (NumberFormatException e) {
+            foodWeight.setText("Syötä paino grammoissa");
+            return;
+        }
+        if (weight <= 0) {
+            foodWeight.setText("Anna paino oikein");
+            return;
+        }
+        Food newFood = new Food(ingredient, weight);
 
+        meal.addFood(newFood);
+        meal.setBloodSugar(Float.parseFloat(bloodSugar.getText().toString()));
+        foodListAdapter.notifyItemInserted(meal.getFoodListSize() - 1);
+        foodIngredient.setText("");
+        foodWeight.setText("");
+        insulinTotal.setText(String.format("%.1f U", meal.calculateInsulinDose()));
 
+    }
     // addFood() metodi painettaessa Lisää -nappia.
     // silloin se:
     // - lisää foodObjektin foods listaan, joka tulee näkyviin recyclerViewiin
     // - tyhjentää syötä ruoka-aine kentän ja syötä gramma kentän EditTextFoodName.setText("")
     // - päivittää EditText insulinDoseTotal kentän
     public void addFood(View view) {
+        mainLayout.requestFocus();
+        Boolean isFoodEmpty = foodIngredient.getText().toString().isEmpty();
+        Boolean isWeightEmpty = foodWeight.getText().toString().isEmpty();
+        if (isFoodEmpty) {
+            Toast.makeText(context, isWeightEmpty ? "Ruoka-aine ja painotieto puuttuvat" : "Ruoka-aine puuttuu", Toast.LENGTH_LONG).show();
+            foodIngredient.requestFocus();
+            return;
+        }
+        if (isWeightEmpty) {
+            Toast.makeText(context, "Painotieto puuttuu", Toast.LENGTH_LONG).show();
+            foodWeight.requestFocus();
+            return;
+        }
         FineliData fineliData = new FineliData();
         ExecutorService service = Executors.newSingleThreadExecutor();
         service.execute(new Runnable() {
@@ -98,29 +137,40 @@ public class MealActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        float weight;
-                        try {
-                            weight = Float.parseFloat(foodWeight.getText().toString());
-                        } catch (NumberFormatException e) {
-                            foodWeight.setText("Ei numero");
+                        if (foundIngredients.isEmpty()) {
+                            foodIngredient.setText("Ei löydy");
                             return;
                         }
-                        if (weight <= 0) {
-                            foodWeight.setText("Anna paino oikein");
-                            return;
+                        if (foundIngredients.size() > 1) {
+                            selectionDialog(foundIngredients);
+                        } else {
+                            handleIngredient(foundIngredients.get(0));
                         }
-                        Food newFood = new Food(foundIngredients.get(0), weight);
-
-                        meal.addFood(newFood);
-                        meal.setBloodSugar(Float.parseFloat(bloodSugar.getText().toString()));
-                        foodListAdapter.notifyItemInserted(meal.getFoodListSize() - 1);
-                        foodIngredient.setText("");
-                        foodWeight.setText("");
-                        insulinTotal.setText(String.format("%.1f U", meal.calculateInsulinDose()));
                     }
                 });
             }
         });
+        // TODO: addFood() virheilmoitus popup, jos syötä verensokerikenttä on tyhjä
+    }
+
+    // wow mikä efekti, kiitos copilot<3
+    private void selectionDialog(ArrayList<Ingredient> foundIngredients) {
+        ArrayList<String> foundIngredientNames = new ArrayList<>();
+        for (Ingredient ingredient : foundIngredients) {
+            foundIngredientNames.add(ingredient.getName());
+        }
+        CharSequence[] foundIngredientNamesAsCharSeq = foundIngredientNames.toArray(new CharSequence[foundIngredientNames.size()]);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Valitse seuraavista:");
+        builder.setItems(foundIngredientNamesAsCharSeq, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                handleIngredient(foundIngredients.get(which));
+                dialog.dismiss();
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 }
 

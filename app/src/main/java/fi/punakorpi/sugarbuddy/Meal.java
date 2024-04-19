@@ -27,7 +27,10 @@ public class Meal {
     // Se koostuu veresnokeria korjaavasta insuliinimäärästä ja hiilihydraatteja vastaavasta insuliinimäärästä
     // Nämä lasketaan insuliiniherkkyystason ja hiilihydraattikertoimien avulla.
     public float calculateInsulinDose() {
-        if (bloodSugar == 0) {
+        if (bloodSugar <= 0) {
+            return 0;
+        }
+        if (foods.isEmpty()) {
             return 0;
         }
         // first this method counts carbs corrective insulin:

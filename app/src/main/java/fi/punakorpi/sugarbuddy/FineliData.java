@@ -20,9 +20,9 @@ public class FineliData {
         try {
             fineliData = objectMapper.readTree(new URL("https://fineli.fi/fineli/api/v1/foods?q=" + name.toLowerCase().replace(" ", "%20")));
         } catch (MalformedURLException e) {
-            return new ArrayList<Ingredient>(); //TODO: virhekäsittely?
+            return new ArrayList<>(); //TODO: virhekäsittely?
         } catch (IOException e) {
-            return new ArrayList<Ingredient>(); //TODO: virhekäsittely?
+            return new ArrayList<>(); //TODO: virhekäsittely?
         }
         ArrayList<Ingredient> ingredientsFromFineli = new ArrayList<>();
         for (JsonNode ingredientData : fineliData) {

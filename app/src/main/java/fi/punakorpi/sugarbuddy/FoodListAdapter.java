@@ -1,20 +1,17 @@
 package fi.punakorpi.sugarbuddy;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
-
 public class FoodListAdapter extends RecyclerView.Adapter<FoodItemViewHolder> {
-    private Context context;
+    private MealActivity mealActivity;
     private Meal meal = new Meal("Virhemeal");
 
-    public FoodListAdapter(Context context) {
-        this.context = context;
+    public FoodListAdapter(MealActivity mealActivity) {
+        this.mealActivity = mealActivity;
     }
 
     public void setMeal(Meal meal) {
@@ -27,7 +24,7 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodItemViewHolder> {
     @NonNull
     @Override
     public FoodItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new FoodItemViewHolder(LayoutInflater.from(context).inflate(R.layout.food_item_view, parent, false));
+        return new FoodItemViewHolder(LayoutInflater.from(mealActivity).inflate(R.layout.food_item_view, parent, false));
     }
 
     public void onBindViewHolder(FoodItemViewHolder holder, int position) {
@@ -35,6 +32,12 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodItemViewHolder> {
         holder.ingredientNameInFoodItemView.setText(foodItem.getIngredient().getName());
         holder.ingredientWeightInFoodItemView.setText(String.valueOf(foodItem.getWeight()));
         holder.totalCarbsInGramsInFoodItemView.setText(String.valueOf(foodItem.calculateCarbsInGrams()));
+        holder.removeImageInFoodItemView.setOnClickListener(view -> {
+            int pos = holder.getAdapterPosition();
+            meal.removeFoodByIndex(position);
+            notifyItemRemoved(pos);
+            mealActivity.updateMealActivityView();
+        });
     }
 
     @Override
