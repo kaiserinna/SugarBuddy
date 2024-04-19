@@ -24,44 +24,45 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <TextView
         android:id="@+id/textViewTotalInsulinLevelStringInMealActivity"
-        android:layout_width="197dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="141dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="3dp"
+        android:background="@drawable/pyoristetyt_reunat"
         android:text="-- U"
         android:textAlignment="center"
         android:textSize="48sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textMealTypeInMealActivity" />
-
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <EditText
         android:id="@+id/editBloodSugarInMealActivity"
         android:layout_width="230dp"
         android:layout_height="40dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:ems="10"
         android:hint="Syötä verensokeri"
         android:inputType="numberDecimal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewTotalInsulinLevelStringInMealActivity" />
 
     <EditText
         android:id="@+id/editTextIngredientNameInMealActivity"
         android:layout_width="230dp"
         android:layout_height="40dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="10dp"
         android:ems="10"
         android:hint="Syötä ruoka-aine"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.845"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/editBloodSugarInMealActivity" />
 
     <EditText
         android:id="@+id/editTextNumberDecimalIngredientWeight"
@@ -102,34 +103,23 @@
         android:layout_width="120dp"
         android:layout_height="40dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="16dp"
         android:text="Verensokeritaso:"
         android:textAlignment="center"
         android:textSize="14dp"
         app:layout_constraintEnd_toStartOf="@+id/editBloodSugarInMealActivity"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="299dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="16dp"
-        android:text="Hae ruoka-aineen hiilihydraattimäärät Finelistä:"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.401"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewTotalInsulinLevelStringInMealActivity" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="120dp"
         android:layout_height="40dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="1dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="3dp"
         android:elegantTextHeight="false"
         android:text="Ruoka-aine:"
         android:textAlignment="center"
@@ -137,7 +127,7 @@
         app:layout_constraintEnd_toStartOf="@+id/editTextIngredientNameInMealActivity"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <TextView
         android:id="@+id/textView5"
@@ -150,7 +140,7 @@
         android:textAlignment="center"
         android:textSize="14dp"
         app:layout_constraintEnd_toStartOf="@+id/editTextNumberDecimalIngredientWeight"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.941"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
@@ -158,11 +148,11 @@
         android:id="@+id/textView"
         android:layout_width="94dp"
         android:layout_height="20dp"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="20dp"
         android:text="Insuliiniannos"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewTotalInsulinLevelStringInMealActivity" />
+        app:layout_constraintTop_toBottomOf="@+id/textMealTypeInMealActivity" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
