@@ -92,11 +92,11 @@ public class MealActivity extends AppCompatActivity {
         try {
             weight = Float.parseFloat(foodWeight.getText().toString());
         } catch (NumberFormatException e) {
-            foodWeight.setText("Syötä paino grammoissa");
+            foodWeight.setText("");
             return;
         }
         if (weight <= 0) {
-            foodWeight.setText("Anna paino oikein");
+            foodWeight.setText("");
             return;
         }
         Food newFood = new Food(ingredient, weight);
@@ -106,7 +106,11 @@ public class MealActivity extends AppCompatActivity {
         foodListAdapter.notifyItemInserted(meal.getFoodListSize() - 1);
         foodIngredient.setText("");
         foodWeight.setText("");
-        insulinTotal.setText(String.format("%.1f U", meal.calculateInsulinDose()));
+        float dose = meal.calculateInsulinDose();
+        if (dose < 0) {
+            dose = 0;
+        }
+        insulinTotal.setText(String.format("%.1f U", dose));
 
     }
     // addFood() metodi painettaessa Lisää -nappia.

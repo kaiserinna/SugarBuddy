@@ -30,8 +30,8 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodItemViewHolder> {
     public void onBindViewHolder(FoodItemViewHolder holder, int position) {
         Food foodItem = meal.getFoodByIndex(position);
         holder.ingredientNameInFoodItemView.setText(foodItem.getIngredient().getName());
-        holder.ingredientWeightInFoodItemView.setText(String.valueOf(foodItem.getWeight()));
-        holder.totalCarbsInGramsInFoodItemView.setText(String.valueOf(foodItem.calculateCarbsInGrams()));
+        holder.ingredientWeightInFoodItemView.setText(String.format("%.0f g", foodItem.getWeight()));
+        holder.totalCarbsInGramsInFoodItemView.setText(String.format("%.0f gHH", foodItem.calculateCarbsInGrams()));
         holder.removeImageInFoodItemView.setOnClickListener(view -> {
             int pos = holder.getAdapterPosition();
             meal.removeFoodByIndex(position);
