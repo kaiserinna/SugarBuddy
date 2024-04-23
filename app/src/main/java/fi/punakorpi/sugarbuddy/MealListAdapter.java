@@ -36,7 +36,12 @@ public class MealListAdapter extends RecyclerView.Adapter<MealItemViewHolder> {
         holder.mealTypeInMealItemViewHolder.setText(meals.getMealByIndex(position).getMealType());
         holder.bloodSugarInMealItemViewHolder.setText(String.format("Verensokeri: %.1f", meals.getMealByIndex(position).getBloodSugar()));
         holder.carbsTotalInMealItemViewHolder.setText(String.format("Hiilihydraatit: %.1f", meals.getMealByIndex(position).calculateCarbsTotal()));
-        holder.insulinDoseInMealItemViewHolder.setText(String.format("%.1f U", meals.getMealByIndex(position).calculateInsulinDose()));
+        if (meals.getMealByIndex(position).isInsulinDoseValid()) {
+            holder.insulinDoseInMealItemViewHolder.setText(String.format("%.1f U", meals.getMealByIndex(position).calculateInsulinDose()));
+        } else {
+            holder.insulinDoseInMealItemViewHolder.setText("-- U");
+        }
+
     }
 
     @Override

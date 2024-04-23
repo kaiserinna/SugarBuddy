@@ -44,6 +44,9 @@ public class Meal {
         return carbsInsulin + bloodSugarInsulin;
     }
 
+    public boolean isInsulinDoseValid() {
+        return !foods.isEmpty();
+    }
     public float calculateCarbsTotal() {
         float totalCarbs = 0;
         for (Food food: foods) {

@@ -39,16 +39,16 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
         context = this;
-        try {
-            Profile.loadFromStream(context.openFileInput(Profile.profileFileName));
-        } catch (FileNotFoundException ignored) {
-        }
         userName = findViewById(R.id.textViewNameInMain);
         mealRecyclerView = findViewById(R.id.rvMealListInMainActivity);
         mealRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new MealListAdapter(getApplicationContext(), storage.getMeals());
         mealRecyclerView.setAdapter(adapter);
-
+        try {
+            Profile.loadFromStream(context.openFileInput(Profile.profileFileName));
+        } catch (FileNotFoundException ignored) {
+            switchToProfileActivity(null);
+        }
     }
     private void updateScreen() {
         String name = storage.getProfile().getUserName();

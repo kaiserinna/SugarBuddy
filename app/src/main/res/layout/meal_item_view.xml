@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="100dp"
     android:layout_marginLeft="6dp"
-    android:layout_marginTop="15dp"
+    android:layout_marginTop="6dp"
     android:layout_marginRight="6dp"
     android:background="@drawable/pyoristetyt_reunat"
     android:clickable="true">
@@ -27,7 +27,9 @@
                 android:layout_height="59dp"
                 android:layout_marginLeft="6dp"
                 android:text="MealType"
-                android:textSize="24sp" />
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/textViewBloodSugarInMealItemView"
@@ -35,7 +37,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_weight="1"
-                android:text="BloodSugar" />
+                android:text="BloodSugar"
+                android:textColor="@color/black" />
 
             <TextView
                 android:id="@+id/textViewCarbsTotalInMealItemView"
@@ -43,7 +46,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_weight="1"
-                android:text="CarbsTotal" />
+                android:text="CarbsTotal"
+                android:textColor="@color/black" />
 
         </LinearLayout>
 
@@ -60,6 +64,7 @@
                 android:layout_marginTop="6dp"
                 android:autoText="false"
                 android:text="INSULIINIMÄÄRÄ:"
+                android:textColor="@color/black"
                 android:textSize="10sp" />
 
             <LinearLayout
@@ -74,6 +79,7 @@
                     android:layout_marginRight="16dp"
                     android:layout_weight="1"
                     android:text="InsulinDose"
+                    android:textColor="@color/black"
                     android:textSize="34sp" />
 
             </LinearLayout>
