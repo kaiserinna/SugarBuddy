@@ -9,46 +9,33 @@
     android:foregroundTint="#90E4ED"
     tools:context=".MainActivity">
 
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvMealListInMainActivity"
-        android:layout_width="392dp"
-        android:layout_height="564dp"
+        android:layout_width="387dp"
+        android:layout_height="559dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="9dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.523"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewNameInMain"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="411dp"
-        android:layout_height="81dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/sugarbuddyfinal" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView9" />
 
     <TextView
         android:id="@+id/textViewNameInMain"
-        android:layout_width="370dp"
-        android:layout_height="39dp"
-        android:layout_marginTop="28dp"
+        android:layout_width="302dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="16dp"
         android:elegantTextHeight="true"
         android:text="Name"
-        android:textAlignment="center"
-        android:textAllCaps="true"
-        android:textColor="#03A9F4"
+        android:textAlignment="textEnd"
+        android:textAllCaps="false"
+        android:textColor="#673AB7"
         android:textSize="20sp"
-        android:textStyle="bold"
+        android:textStyle="normal|bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintHorizontal_bias="0.161"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageViewProfileButton"
@@ -62,5 +49,15 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/profile_button" />
 
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="345dp"
+        android:layout_height="106dp"
+        android:layout_marginTop="44dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.181"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/sugarbuddysugarbuddy" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

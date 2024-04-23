@@ -23,13 +23,14 @@
 
             <TextView
                 android:id="@+id/textViewMealTypeInMealItemView"
-                android:layout_width="210dp"
-                android:layout_height="59dp"
+                android:layout_width="225dp"
+                android:layout_height="44dp"
                 android:layout_marginLeft="6dp"
+                android:layout_marginTop="6dp"
                 android:text="MealType"
-                android:textColor="@color/black"
+                android:textColor="#464646"
                 android:textSize="24sp"
-                android:textStyle="bold" />
+                android:textStyle="normal" />
 
             <TextView
                 android:id="@+id/textViewBloodSugarInMealItemView"
@@ -38,7 +39,7 @@
                 android:layout_marginLeft="16dp"
                 android:layout_weight="1"
                 android:text="BloodSugar"
-                android:textColor="@color/black" />
+                android:textColor="#323232" />
 
             <TextView
                 android:id="@+id/textViewCarbsTotalInMealItemView"
@@ -47,7 +48,7 @@
                 android:layout_marginLeft="16dp"
                 android:layout_weight="1"
                 android:text="CarbsTotal"
-                android:textColor="@color/black" />
+                android:textColor="#323232" />
 
         </LinearLayout>
 
@@ -64,7 +65,7 @@
                 android:layout_marginTop="6dp"
                 android:autoText="false"
                 android:text="INSULIINIMÄÄRÄ:"
-                android:textColor="@color/black"
+                android:textColor="#323232"
                 android:textSize="10sp" />
 
             <LinearLayout
@@ -79,7 +80,7 @@
                     android:layout_marginRight="16dp"
                     android:layout_weight="1"
                     android:text="InsulinDose"
-                    android:textColor="@color/black"
+                    android:textColor="#464646"
                     android:textSize="34sp" />
 
             </LinearLayout>
